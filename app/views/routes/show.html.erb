@@ -5,5 +5,17 @@
   <%= @route.title %>
 </p>
 
+
+  <% if @route.trains.empty? %>
+    <p>Поездов на маршруте нет</p>
+  <% else %>
+    <p><strong>Список поездов на маршруте:</strong></p>
+    <ul>
+      <% @route.trains.each do |train| %>
+          <li><%= train.number %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
 <%= link_to 'Назад', routes_path %>
