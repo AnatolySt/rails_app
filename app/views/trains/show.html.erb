@@ -21,6 +21,42 @@
     <p>Маршрут не назначен</p>
 <% end %>
 
+<% if @train.carriages.empty? %>
+      <p>Вагоны отсутствуют</p>
+<% else
+     plac_carriages = 0
+     kupe_carriages = 0
+     kupe_bottom_seats = 0
+     kupe_top_seats = 0
+     plac_bottom_seats = 0
+     plac_top_seats = 0
+     @train.carriages.each do |carriage|
+       if carriage.kind == "Купе"
+         kupe_carriages += 1
+         kupe_bottom_seats += carriage.bottom_seats
+         kupe_top_seats += carriage.top_seats
+       elsif carriage.kind == "Плацкарт"
+         plac_carriages += 1
+         plac_bottom_seats += carriage.bottom_seats
+         plac_top_seats += carriage.top_seats
+       end
+     end
+   end %>
+   <strong>Количество вагонов:</strong>
+   <ul>
+      <li>Купе - <%= kupe_carriages %></li>
+      <li>Плацкарт - <%= plac_carriages %></li>
+   </ul>
+   <strong>Количество мест купе:</strong>
+   <ul>
+      <li>Верхние - <%= kupe_top_seats %></li>
+      <li>Нижние - <%= kupe_bottom_seats %></li>
+   </ul>
+   <strong>Количество мест плацкарт:</strong>
+    <ul>
+      <li>Верхние - <%= plac_top_seats %></li>
+      <li>Нижние - <%= plac_bottom_seats %></li>
+    </ul>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>
