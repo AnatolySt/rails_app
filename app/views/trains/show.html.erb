@@ -21,6 +21,26 @@
     <p>Маршрут не назначен</p>
 <% end %>
 
+<% if @train.carriages.empty? %>
+    <p>У поезда нет вагонов</p>
+<% else %>
+    <p><strong>Вагоны:</strong></p>
+    <ul>
+      <li>Купе: <%= @train.count_carriages('Купе') %></li>
+      <li>Плацкарт: <%= @train.count_carriages('Плацкарт') %></li>
+    </ul>
+    <p><strong>Места купе:</strong></p>
+    <ul>
+      <li>Верхние: <%= @train.count_seats('Купе', 'top_seats') %></li>
+      <li>Нижние: <%= @train.count_seats('Купе', 'bottom_seats')  %></li>
+    </ul>
+    <p><strong>Места плацкарт</strong></p>
+    <ul>
+      <li>Верхние: <%= @train.count_seats('Плацкарт', 'top_seats') %></li>
+      <li>Нижние: <%= @train.count_seats('Плацкарт', 'bottom_seats')  %></li>
+    </ul>
+<% end %>
+
 
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>
