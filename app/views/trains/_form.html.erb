@@ -16,6 +16,11 @@
     <%= form.collection_select :route_id, Route.all, :id, :title %>
   </div>
 
+  <div class="field">
+    <%= form.label :sort_flag, "Сортировка" %>
+    <%= form.select :sort_flag, [['С головы поезда', true], ['С хвоста поезда', false]] %>
+  </div>
+
   <div class="actions">
     <%= form.submit "#{ train.new_record? ? 'Создать' : 'Изменить'}" %>
   </div>

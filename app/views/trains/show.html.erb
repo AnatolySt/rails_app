@@ -26,6 +26,17 @@
 <% else %>
     <p><strong>Вагоны:</strong></p>
     <ul>
+    <% if @train.sort_flag %>
+          <% @train.carriages.sorted('ASC').each do |carriage| %>
+              <li><%= link_to carriage.position, carriage_path(carriage)  %></a></li>
+          <% end %>
+    <% else %>
+          <% @train.carriages.sorted('DESC').each do |carriage| %>
+              <li><%= link_to carriage.position, carriage_path(carriage) %></a></li>
+          <% end %>
+    <% end %>
+    </ul>
+    <ul>
       <li>Купе: <%= @train.count_carriages('Купе') %></li>
       <li>Плацкарт: <%= @train.count_carriages('Плацкарт') %></li>
     </ul>

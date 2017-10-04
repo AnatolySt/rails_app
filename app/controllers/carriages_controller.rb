@@ -69,6 +69,6 @@ class CarriagesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def carriage_params
-    params.require(:carriage).permit(:number, :kind, :train_id, :top_seats, :bottom_seats)
+    params.require(:carriage).permit(:number, :kind, :train_id, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats, :down_seats)
   end
 end
