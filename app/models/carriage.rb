@@ -1,7 +1,7 @@
 class Carriage < ApplicationRecord
   belongs_to :train
 
-  scope :sorted, -> (sort_type) { order("position #{sort_type}") }
+  scope :sorted, -> (sort_type) { order("number #{sort_type}") }
 
   validates :number, presence: true
 
@@ -11,9 +11,10 @@ class Carriage < ApplicationRecord
 
   def set_position
     if train.carriages.exists?
-      self.position = train.carriages.last.position + 1
+      last_num_tran = train.carriages.max_by{ |carriage| carriage.number }
+      self.number = last_num_tran.number + 1
     else
-      self.position = 1
+      self.number = 1
     end
   end
 end

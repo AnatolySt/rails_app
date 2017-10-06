@@ -4,41 +4,12 @@
   <strong>Номер:</strong>
   <%= @carriage.number %>
 </p>
-<p>
-  <strong>Тип:</strong>
-  <%= @carriage.kind %>
-</p>
-<% if @carriage.kind == 'Купе' %>
-    <p>
-     <strong>Количество верхних мест:</strong>
-     <%= @carriage.top_seats %>
-    </p>
-    <p>
-     <strong>Количество нижних мест:</strong>
-      <%= @carriage.bottom_seats %>
-    </p>
-<% elsif @carriage.kind == 'Плацкарт' %>
-    <p>
-      <strong>Количество верхних мест:</strong>
-      <%= @carriage.top_seats %>
-    </p>
-    <p>
-      <strong>Количество нижних мест:</strong>
-      <%= @carriage.bottom_seats %>
-    </p>
-    <p>
-      <strong>Количество верхних боковых мест:</strong>
-      <%= @carriage.side_top_seats %>
-    </p>
-    <p>
-      <strong>Количество нижних боковых мест:</strong>
-      <%= @carriage.side_bottom_seats %>
-    </p>
-<% elsif @carriage.kind == 'Сидячий' %>
-    <p>
-      <strong>Количество сидячих мест:</strong>
-      <%= @carriage.down_seats %>
-    </p>
+<% if @carriage.type == 'CoupeCarriage' %>
+    <%= render 'coupe_carriage', carriage: @carriage %>
+<% elsif @carriage.type == 'EconomyCarriage' %>
+    <%= render 'economy_carriage', carriage: @carriage %>
+<% elsif @carriage.type == 'SvCarriage' %>
+    <%= render 'sv_carriage', carriage: @carriage %>
 <% end %>
 
 <%= link_to 'Редактировать', edit_carriage_path(@carriage) %> |

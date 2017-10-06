@@ -28,11 +28,11 @@
     <ul>
     <% if @train.sort_flag %>
           <% @train.carriages.sorted('ASC').each do |carriage| %>
-              <li><%= link_to carriage.position, carriage_path(carriage)  %></a></li>
+              <li><%= link_to carriage.number, carriage_path(carriage)  %></a></li>
           <% end %>
     <% else %>
           <% @train.carriages.sorted('DESC').each do |carriage| %>
-              <li><%= link_to carriage.position, carriage_path(carriage) %></a></li>
+              <li><%= link_to carriage.number, carriage_path(carriage) %></a></li>
           <% end %>
     <% end %>
     </ul>

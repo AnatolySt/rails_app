@@ -2,13 +2,8 @@
     <%= render 'common/errors', resource: @carriage %>
 
     <div class="field">
-      <%= form.label :number, "Номер вагона" %>
-      <%= form.text_field :number, id: :carriage_number %>
-    </div>
-
-    <div class="field">
-      <%= form.label :kind, "Тип вагона" %>
-      <%= form.select :kind, ["Плацкарт", "Купе", "Сидячий"] %>
+      <%= form.label :type, "Тип вагона" %>
+      <%= form.select :type, [['Плацкарт', 'EconomyCarriage'], ['Купе', 'CoupeCarriage'], ['Сидячий', 'SvCarriage']] %>
     </div>
 
     <div class="field">
