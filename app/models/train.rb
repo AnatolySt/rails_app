@@ -28,4 +28,8 @@ class Train < ApplicationRecord
     end
     return seats_count
   end
+
+  def count_seats_ar_query(type, seats_type)
+    self.carriages.where(type: type).sum(seats_type)
+  end
 end

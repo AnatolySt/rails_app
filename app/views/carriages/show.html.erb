@@ -4,18 +4,13 @@
   <strong>Номер:</strong>
   <%= @carriage.number %>
 </p>
-<p>
-  <strong>Тип:</strong>
-  <%= @carriage.kind %>
-</p>
-<p>
-  <strong>Количество верхних мест:</strong>
-  <%= @carriage.top_seats %>
-</p>
-<p>
-  <strong>Количество нижних мест:</strong>
-  <%= @carriage.bottom_seats %>
-</p>
+<% if @carriage.type == 'CoupeCarriage' %>
+    <%= render 'coupe_carriage', carriage: @carriage %>
+<% elsif @carriage.type == 'EconomyCarriage' %>
+    <%= render 'economy_carriage', carriage: @carriage %>
+<% elsif @carriage.type == 'SvCarriage' %>
+    <%= render 'sv_carriage', carriage: @carriage %>
+<% end %>
 
 <%= link_to 'Редактировать', edit_carriage_path(@carriage) %> |
 <%= link_to 'Назад', carriages_path %>
