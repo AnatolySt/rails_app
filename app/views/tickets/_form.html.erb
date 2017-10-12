@@ -1,19 +1,18 @@
-<%= form_with(model: ticket, local: true) do |form| %>
-    <% if ticket.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+<%= form_for(@ticket) do |form| %>
+    <%= render 'common/errors', resource: @ticket %>
 
-          <ul>
-            <% ticket.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+    <%= form.hidden_field :start_station_id %>
+    <%= form.hidden_field :last_station_id %>
+    <%= form.hidden_field :train_id %>
 
     <div class="field">
-      <%= form.label :number %>
-      <%= form.text_field :number, id: :ticket_number %>
+      <%= form.label :full_name, 'ФИО' %>
+      <%= form.text_field :full_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :passport_num, 'Номер паспорта' %>
+      <%= form.text_field :passport_num %>
     </div>
 
     <div class="actions">

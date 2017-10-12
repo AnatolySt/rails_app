@@ -1,0 +1,31 @@
+<h1>Результаты поиска</h1>
+<% if @trains.present? %>
+<table>
+  <thead>
+    <tr>
+      <td>Номер поезда</td>
+      <td>Маршрут</td>
+      <td>Станция, время отправления</td>
+      <td>Станция, время прибытия</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @trains.each do |train| %>
+      <tr>
+        <td><%= train.number %></td>
+        <td><%= train.route.title %></td>
+        <td><%= @departure_station.title %>, <%= @departure_station.dep_time_in(train.route).strftime("%H:%M") %></td>
+        <td><%= @arrival_station.title %>, <%= @arrival_station.arr_time_in(train.route).strftime("%H:%M") %></td>
+        <td>
+          <%= link_to 'Купить билет', new_ticket_path(
+             train_id: train.id,
+             start_station_id: @departure_station,
+             last_station_id: @arrival_station
+          ) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

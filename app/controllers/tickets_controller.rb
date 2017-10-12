@@ -10,11 +10,18 @@ class TicketsController < ApplicationController
   # GET /tickets/1
   # GET /tickets/1.json
   def show
+    @ticket = Ticket.find(params[:id])
+    @departure_station = RailwayStation.find_by(params[:start_station_id])
+    @arrival_station = RailwayStation.find_by(params[:last_station_id])
   end
 
   # GET /tickets/new
   def new
-    @ticket = Ticket.new
+    @ticket = Ticket.new(
+        train_id: params[:train_id],
+        start_station_id: params[:start_station_id],
+        last_station_id: params[:last_station_id]
+    )
   end
 
   # GET /tickets/1/edit
@@ -69,6 +76,6 @@ class TicketsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def ticket_params
-    params.require(:ticket).permit(:number)
+    params.require(:ticket).permit(:train_id, :start_station_id, :last_station_id, :full_name, :passport_num)
   end
 end

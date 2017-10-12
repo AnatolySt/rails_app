@@ -1,14 +1,9 @@
-<%= form_for(@carriage) do |form| %>
+<%= form_for [@train, @carriage] do |form| %>
     <%= render 'common/errors', resource: @carriage %>
 
     <div class="field">
       <%= form.label :type, "Тип вагона" %>
       <%= form.select :type, [['Плацкарт', 'EconomyCarriage'], ['Купе', 'CoupeCarriage'], ['Сидячий', 'SvCarriage']] %>
-    </div>
-
-    <div class="field">
-      <%= form.label :train, "Поезд" %>
-      <%= form.collection_select :train_id, Train.all, :id, :number %>
     </div>
 
     <div class="field">
