@@ -11,8 +11,8 @@ class Carriage < ApplicationRecord
 
   def set_position
     if train.carriages.exists?
-      last_num_tran = train.carriages.max_by{ |carriage| carriage.number }
-      self.number = last_num_tran.number + 1
+      last_num_tran = train.carriages.maximum('number')
+      self.number = last_num_tran + 1
     else
       self.number = 1
     end

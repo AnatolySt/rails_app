@@ -1,5 +1,6 @@
 class CarriagesController < ApplicationController
   before_action :set_carriage, only: [:show, :edit, :update, :destroy]
+  before_action :set_train, only: [:new, :edit, :update, :destroy]
 
   # GET /carriages
   # GET /carriages.json
@@ -14,6 +15,7 @@ class CarriagesController < ApplicationController
 
   # GET /carriages/new
   def new
+    @train = Train.find(params[:train_id])
     @carriage = Carriage.new
   end
 
@@ -24,12 +26,12 @@ class CarriagesController < ApplicationController
   # POST /carriages
   # POST /carriages.json
   def create
-    @carriage = Carriage.new(carriage_params)
+    @carriage = @train.carriages.new(carriage_params)
 
     respond_to do |format|
       if @carriage.save
-        format.html { redirect_to @carriage, notice: 'Carriage was successfully created.' }
-        format.json { render :show, status: :created, location: @carriage }
+        format.html { redirect_to @train, notice: 'Carriage was successfully created.' }
+        format.json { render :show, status: :created, location: @train }
       else
         format.html { render :new }
         format.json { render json: @carriage.errors, status: :unprocessable_entity }
@@ -65,6 +67,10 @@ class CarriagesController < ApplicationController
   # Use callbacks to share common setup or conscarriagets between actions.
   def set_carriage
     @carriage = Carriage.find(params[:id])
+  end
+
+  def set_train
+    @train = Train.find(params[:train_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
