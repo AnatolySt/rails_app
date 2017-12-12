@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blog</title>
+    <title>TuTu</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <header>
-    <a href="/trains">Поезда</a> |
-    <a href="/railway_stations">Станции</a> |
-    <a href="/routes">Маршруты</a> |
-    <a href="/tickets">Билеты</a> |
-    <a href="/users">Пользователи</a>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <p>
+      <% if user_signed_in? %>
+        <p>Аккаунт: <%= current_user.email %> | <%= link_to 'Выйти', destroy_user_session_path, method: :delete %></p>
+      <% else %>
+          <%= link_to 'Войти', new_user_session_path %>
+      <% end %>
+    </p>
+    <p>
+      <a href="/search">Поиск</a> |
+      <a href="/tickets">Билеты</a>
+    </p>
   </header>
   <body>
     <%= yield %>

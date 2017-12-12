@@ -1,0 +1,13 @@
+<p>
+  <strong>Номер:</strong>
+  <%= @carriage.number %>
+</p>
+<% if @carriage.type == 'CoupeCarriage' %>
+    <%= render 'coupe_carriage', carriage: @carriage %>
+<% elsif @carriage.type == 'EconomyCarriage' %>
+    <%= render 'economy_carriage', carriage: @carriage %>
+<% elsif @carriage.type == 'SvCarriage' %>
+    <%= render 'sv_carriage', carriage: @carriage %>
+<% end %>
+
+<%= link_to 'Назад', admin_train_path(@carriage.train) %>

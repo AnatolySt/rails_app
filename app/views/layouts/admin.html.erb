@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TuTu - Администратор</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<header>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <p>
+    <% if user_signed_in? %>
+      <p>Аккаунт: <%= current_user.email %> | <%= link_to 'Выйти', destroy_user_session_path, method: :delete %></p>
+  <% else %>
+      <%= link_to 'Войти', new_user_session_path %>
+  <% end %>
+  </p>
+  <p>
+    <%= link_to 'Поиск', search_path %> |
+    <%= link_to 'Поезда', admin_trains_path %> |
+    <%= link_to 'Станции', admin_railway_stations_path %> |
+    <%= link_to 'Маршруты', admin_routes_path %> |
+    <%= link_to 'Вагоны', admin_carriages_path %> |
+    <%= link_to 'Билеты', tickets_path %> |
+    <%= link_to 'Пользователи', admin_users_path %>
+  </p>
+</header>
+<body>
+<%= yield %>
+<footer>
+  <p>&copy; 2017 Anatoly Stupin. Учебный проект в <a href="http://www.thinknetica.com/" target="_blank">онлайн-школе Thinknetica</a></p>
+</footer>
+</body>
+</html>
