@@ -28,7 +28,7 @@ class Admin::TrainsController < Admin::BaseController
 
     respond_to do |format|
       if @train.save
-        format.html { redirect_to @train, notice: 'Train was successfully created.' }
+        format.html { redirect_to admin_train_path(@train), notice: 'Train was successfully created.' }
         format.json { render :show, status: :created, location: @train }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class Admin::TrainsController < Admin::BaseController
   def destroy
     @train.destroy
     respond_to do |format|
-      format.html { redirect_to trains_url, notice: 'Train was successfully destroyed.' }
+      format.html { redirect_to admin_trains_path, notice: 'Train was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

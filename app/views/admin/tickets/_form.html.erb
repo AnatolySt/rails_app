@@ -1,4 +1,4 @@
-<%= form_for(@ticket) do |form| %>
+<%= form_for @ticket, url: admin_tickets_path do |form| %>
     <%= render 'common/errors', resource: @ticket %>
 
     <%= form.hidden_field :start_station_id %>
@@ -10,8 +10,6 @@
           <%= form.label :user, "Пользователь" %>
           <%= form.collection_select :user_id, User.all, :id, :email %>
         </div>
-    <% else %>
-        <%= form.hidden_field :user_id %>
     <% end %>
 
     <div class="field">

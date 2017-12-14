@@ -10,27 +10,16 @@
 
   <tbody>
   <% @tickets.each do |ticket| %>
-    <% if user_signed_in? %>
-          <% if (current_user.admin?) %>
-            <tr>
-              <td><%= ticket.full_name %></td>
-              <td><%= link_to 'Показать', ticket %></td>
-              <td><%= link_to 'Редактировать', edit_ticket_path(ticket) %></td>
-              <td><%= link_to 'Удалить', ticket, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
-            </tr>
-          <% elsif (current_user.id == ticket.user_id) %>
-            <tr>
-              <td><%= ticket.full_name %></td>
-              <td><%= link_to 'Показать', ticket %></td>
-              <td><%= link_to 'Редактировать', edit_ticket_path(ticket) %></td>
-              <td><%= link_to 'Удалить', ticket, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
-            </tr>
-          <% end %>
-      <% end %>
+     <tr>
+       <td><%= ticket.full_name %></td>
+       <td><%= link_to 'Показать', admin_ticket_path(ticket) %></td>
+       <td><%= link_to 'Редактировать', edit_admin_ticket_path(ticket) %></td>
+       <td><%= link_to 'Удалить', admin_ticket_path(ticket), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+     </tr>
   <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'Создать билет', new_ticket_path %>
+<%= link_to 'Создать билет', new_admin_ticket_path %>

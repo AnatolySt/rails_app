@@ -18,11 +18,19 @@
         <td><%= @departure_station.title %>, <%= @departure_station.dep_time_in(train.route).strftime("%H:%M") %></td>
         <td><%= @arrival_station.title %>, <%= @arrival_station.arr_time_in(train.route).strftime("%H:%M") %></td>
         <td>
-          <%= link_to 'Купить билет', new_ticket_path(
+          <% if current_user.admin? %>
+          <%= link_to 'Купить билет', new_admin_ticket_path(
              train_id: train.id,
              start_station_id: @departure_station,
              last_station_id: @arrival_station
           ) %>
+          <% else %>
+          <%= link_to 'Купить билет', new_admin_ticket_path(
+             train_id: train.id,
+             start_station_id: @departure_station,
+             last_station_id: @arrival_station
+          ) %>
+          <% end %>
         </td>
       </tr>
     <% end %>

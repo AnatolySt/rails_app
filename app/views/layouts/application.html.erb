@@ -13,15 +13,16 @@
 
     <p>
       <% if user_signed_in? %>
-        <p>Аккаунт: <%= current_user.email %> | <%= link_to 'Выйти', destroy_user_session_path, method: :delete %></p>
+        <p>Привет, <%= current_user.name %>! Аккаунт: <%= current_user.email %> | <%= link_to 'Выйти', destroy_user_session_path, method: :delete %></p>
       <% else %>
           <%= link_to 'Войти', new_user_session_path %>
       <% end %>
     </p>
     <p>
       <a href="/search">Поиск</a> |
-      <a href="/tickets">Билеты</a> |
-      <% if current_user.admin? %> |
+      <a href="/tickets">Билеты</a>
+      <% if user_signed_in? && current_user.admin? %> |
+      <%= link_to 'Билеты', admin_tickets_path %> |
       <%= link_to 'Поезда', admin_trains_path %> |
       <%= link_to 'Станции', admin_railway_stations_path %> |
       <%= link_to 'Маршруты', admin_routes_path %> |

@@ -1,4 +1,8 @@
 <p>
+  <strong>Пользователь:</strong>
+  <%= @ticket.user.email %>
+</p>
+<p>
   <strong>ФИО пассажира:</strong>
   <%= @ticket.full_name %>
 </p>
@@ -13,5 +17,5 @@
   <%= @ticket.last_station.title %> / <%= @ticket.arrival_time %>
 </p>
 
-<%= link_to 'Редактировать', edit_ticket_path(@ticket) %> |
-<%= link_to 'Назад', tickets_path %>
+<%= link_to 'Редактировать', edit_admin_ticket_path(@ticket) %> |
+<%= link_to 'Назад', admin_tickets_path %>
