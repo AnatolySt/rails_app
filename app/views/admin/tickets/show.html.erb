@@ -1,0 +1,21 @@
+<p>
+  <strong>Пользователь:</strong>
+  <%= @ticket.user.email %>
+</p>
+<p>
+  <strong>ФИО пассажира:</strong>
+  <%= @ticket.full_name %>
+</p>
+
+<p>
+  <strong>Станция/время отправления:</strong>
+  <%= @ticket.start_station.title %> / <%= @ticket.departure_time %>
+</p>
+
+<p>
+  <strong>Станция/время отправления:</strong>
+  <%= @ticket.last_station.title %> / <%= @ticket.arrival_time %>
+</p>
+
+<%= link_to 'Редактировать', edit_admin_ticket_path(@ticket) %> |
+<%= link_to 'Назад', admin_tickets_path %>

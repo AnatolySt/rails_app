@@ -1,0 +1,28 @@
+<%= form_for @ticket, url: admin_tickets_path do |form| %>
+    <%= render 'common/errors', resource: @ticket %>
+
+    <%= form.hidden_field :start_station_id %>
+    <%= form.hidden_field :last_station_id %>
+    <%= form.hidden_field :train_id %>
+
+    <% if user_signed_in? && current_user.admin? %>
+        <div class="field">
+          <%= form.label :user, "Пользователь" %>
+          <%= form.collection_select :user_id, User.all, :id, :email %>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :full_name, 'ФИО' %>
+      <%= form.text_field :full_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :passport_num, 'Номер паспорта' %>
+      <%= form.text_field :passport_num %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Отправить' %>
+    </div>
+<% end %>
