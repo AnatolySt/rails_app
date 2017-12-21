@@ -1,16 +1,15 @@
 <h1>Поиск билета</h1>
 
-<%= form_tag search_path do %>
-  <div class="field">
-    <%= label_tag(:departure_station, 'Станция отправления') %>
-    <%= select_tag :departure_station, options_from_collection_for_select(RailwayStation.all, :id, :title) %>
-  </div>
-  <div class="field">
-    <%= label_tag(:arrival_station, 'Станция прибытия') %>
-    <%= select_tag :arrival_station, options_from_collection_for_select(RailwayStation.all, :id, :title) %>
-  </div>
-
-  <div class="actions">
-    <%= submit_tag('Отправить') %>
+<%= form_tag search_path, class: 'search_form' do %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= select_tag :departure_station, options_from_collection_for_select(RailwayStation.all, :id, :title), class: 'form-control' %>
+    </div>
+    <div class="col-md-4">
+      <%= select_tag :arrival_station, options_from_collection_for_select(RailwayStation.all, :id, :title), class: 'form-control' %>
+    </div>
+    <div class="col-md-4">
+      <%= submit_tag 'Отправить', class: 'btn btn-primary find' %>
+    </div>
   </div>
 <% end %>

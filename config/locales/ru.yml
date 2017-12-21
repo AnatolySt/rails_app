@@ -1,0 +1,9 @@
+ru:
+  admin:
+    railway_stations:
+      new:
+        title: 'Добавить станцию'
+      edit:
+        title: 'Изменить станцию'
+      form:
+        submit: '%{action} станцию'

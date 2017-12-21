@@ -42,7 +42,7 @@ class Admin::TrainsController < Admin::BaseController
   def update
     respond_to do |format|
       if @train.update(train_params)
-        format.html { redirect_to @train, notice: 'Train was successfully updated.' }
+        format.html { redirect_to admin_train_path(@train), notice: 'Train was successfully updated.' }
         format.json { render :show, status: :ok, location: @train }
       else
         format.html { render :edit }
