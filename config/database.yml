@@ -19,3 +19,7 @@ development:
 test:
   <<: *default
   database: tutu_test
+
+production:
+  <<: *default
+  database: tutu_production
