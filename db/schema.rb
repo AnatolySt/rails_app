@@ -12,12 +12,15 @@
 
 ActiveRecord::Schema.define(version: 20171212165938) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "carriages", force: :cascade do |t|
-    t.integer "number"
+    t.decimal "number"
     t.string "kind"
     t.integer "top_seats", default: 0
     t.integer "bottom_seats", default: 0
-    t.integer "train_id"
+    t.bigint "train_id"
     t.integer "side_top_seats", default: 0
     t.integer "side_bottom_seats", default: 0
     t.integer "down_seats", default: 0
@@ -48,10 +51,10 @@ ActiveRecord::Schema.define(version: 20171212165938) do
   create_table "tickets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "train_id"
-    t.integer "user_id"
-    t.integer "start_station_id"
-    t.integer "last_station_id"
+    t.bigint "train_id"
+    t.bigint "user_id"
+    t.bigint "start_station_id"
+    t.bigint "last_station_id"
     t.string "full_name"
     t.string "passport_num"
     t.index ["last_station_id"], name: "index_tickets_on_last_station_id"
@@ -64,8 +67,8 @@ ActiveRecord::Schema.define(version: 20171212165938) do
     t.string "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "route_id"
-    t.integer "current_station_id"
+    t.bigint "route_id"
+    t.bigint "current_station_id"
     t.boolean "sort_flag", default: true
     t.index ["current_station_id"], name: "index_trains_on_current_station_id"
     t.index ["route_id"], name: "index_trains_on_route_id"
