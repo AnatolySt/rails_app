@@ -94,13 +94,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
-      :user_name => ENV['app111133378@heroku.com'],
-      :password => ENV['afrcwnfi0070'],
+      :user_name => 'app111133378@heroku.com',
+      :password => 'afrcwnfi0070',
       :domain => 'secret-caverns-13451.herokuapp.com',
       :address => 'smtp.sendgrid.net',
       :port => 587,
       :authentication => :plain,
       :enable_starttls_auto => true
   }
-
 end
