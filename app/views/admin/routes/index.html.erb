@@ -1,6 +1,6 @@
 <h1>Список маршрутов</h1>
 
-<table>
+<table class="table">
   <thead>
   <tr>
     <th>Название</th>
@@ -11,9 +11,14 @@
   <tbody>
   <% @routes.each do |route| %>
       <tr>
-        <td><%= route.title %></td>
+        <td>
+          <div id="route_title_<%= route.id %>">
+            <%= route.title %>
+          </div>
+          <%= render 'form', route: route, hidden: true %>
+        </td>
         <td><%= link_to 'Показать', admin_route_path(route) %></td>
-        <td><%= link_to 'Редактировать', edit_admin_route_path(route) %></td>
+        <td><%= link_to 'Редактировать', '', class: 'edit_route', data: { route_id: route.id } %></td>
         <td><%= link_to 'Удалить', admin_route_path(route), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
       </tr>
   <% end %>

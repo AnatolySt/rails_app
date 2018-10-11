@@ -1,0 +1,12 @@
+<%= form_for [:admin, train], html: { style: "display: #{ hidden ? 'none' : 'block' }" } do |form| %>
+  <%= render 'common/errors', resource: train %>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.text_field :number, id: :train_number %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Изменить' %>
+  </div>
+<% end %>
